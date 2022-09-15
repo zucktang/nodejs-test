@@ -79,14 +79,16 @@ app.put('/ticket/:id',(req,res)=>{
     let title = req.body.title
     let description = req.body.description
     let contact_information= req.body.contact_information
+    let status = req.body.status
 
     if(!id){
         return res.status(400).send({
             error: "Please provide id"
         }
         )}
+
     else{
-        db.query('update ticket_detail SET title = ? , description = ? , contact_information = ? where id = ? ', [title,description,contact_information,id],(err,results,fields)=>{
+        db.query('update ticket_detail SET title = ? , description = ? , contact_information = ? , status = ? where id = ? ', [title,description,contact_information,status,id],(err,results,fields)=>{
             if(err){
             console.log(err);
             }
